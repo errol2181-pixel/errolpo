@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <style>
+    /* Global Styles & Warm Color Palette */
+    :root {
+      --bg-color: #f7f3ed;
+      --card-bg: #efe8dc;
+      --text-dark: #2b231f;
+      --text-muted: #5a524c;
+      --accent-gold: #cca43b;
+      --accent-brown: #3e322b;
+      --pill-bg: #3c3028;
+      --pill-text: #ffffff;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding: 0 5%;
+    }
+
+    /* Navigation Bar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--accent-brown);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    .btn-login {
+      background-color: transparent;
+      border: 2px solid var(--accent-brown);
+      color: var(--accent-brown);
+      padding: 8px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-login:hover {
+      background-color: var(--accent-brown);
+      color: #fff;
+    }
+
+    .btn-hire {
+      background-color: var(--accent-brown);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .btn-hire:hover {
+      background-color: var(--accent-gold);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 0;
+      gap: 40px;
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero-text h3 {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-text h1 {
+      font-size: 54px;
+      color: var(--accent-gold);
+      font-weight: 800;
+      margin: 5px 0 10px 0;
+    }
+
+    .hero-text h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .hero-image img {
+      max-width: 380px;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    /* Stats Bar */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0 60px 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background-color: var(--pill-bg);
+      color: var(--pill-text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 22px;
+      border-radius: 30px;
+      min-width: 200px;
+    }
+
+    .stat-icon {
+      background-color: var(--accent-gold);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .stat-info strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .stat-info span {
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    /* Tools I Use Section */
+    .tools-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .tools-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .tools-section p {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tool-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .tool-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .tool-card span {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* About Section */
+    .about-section {
+      background-color: var(--card-bg);
+      border-radius: 24px;
+      padding: 50px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .about-img img {
+      width: 280px;
+      border-radius: 16px;
+    }
+
+    .about-content h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+
+    .about-content p {
+      margin-bottom: 15px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* More About Me Section */
+    .more-about {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .more-about h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .more-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px 1fr;
+      align-items: center;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .fact-card {
+      font-size: 14px;
+      color: var(--text-muted);
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 15px 20px;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .fact-card.left {
+      text-align: right;
+    }
+
+    .fact-card.right {
+      text-align: left;
+    }
+
+    .center-photo img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    /* Contact & Login Section */
+    .contact-section {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .contact-section p.subtitle {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .contact-container {
+      display: flex;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-card, .login-card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 35px;
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .contact-card h3, .login-card h3 {
+      font-size: 22px;
+      color: var(--accent-brown);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+
+    .input-group input, .input-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-family: inherit;
+      background-color: #fff;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-brown);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--accent-gold);
+    }
+
+    /* Log In Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-card {
+      background-color: var(--bg-color);
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 380px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .modal-card h2 {
+      margin-bottom: 20px;
+      color: var(--accent-brown);
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero, .about-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .more-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact-card.left, .fact-card.right {
+        text-align: center;
+      }
+
+      .contact-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">EI</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Contact</a>
+      <button class="btn-login" onclick="toggleModal()">Log In</button>
+      
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h3>Hi, I am</h3>
+      <h1>Errol Iglesia</h1>
+      <h4>BSIS STUDENT | ASPIRING DEVELOPER</h4>
+      <p>I may still be finding my footing in code, but I bring strong dedication, problem-solving skills, and an eager mindset to learn and grow every day.</p>
+    </div>
+    <div class="hero-image">
+      <img src="errol1.jpg">
+    </div>
+  </section>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-container">
+    <div class="stat-pill">
+      <div class="stat-icon">★</div>
+      <div class="stat-info">
+        <strong>4 Years</strong>
+        <span>Writing Experience</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">●</div>
+      <div class="stat-info">
+        <strong>2 Brands</strong>
+        <span>Long-term Clients</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">✓</div>
+      <div class="stat-info">
+        <strong>Continuous</strong>
+        <span>Learning Mindset</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">🌐</div>
+      <div class="stat-info">
+        <strong>Remote</strong>
+        <span>Open Worldwide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools I Use Section -->
+  <section class="tools-section" id="tools">
+    <h2>Tools I Use & Learn</h2>
+    <p>Technologies and tools I am actively using and practicing with to expand my skills.</p>
+    <div class="tools-grid">
+      
+      <!-- Tool 1 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+        <span>VS Code</span>
+      </div>
+
+      <!-- Tool 2 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+        <span>HTML5</span>
+      </div>
+
+      <!-- Tool 3 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+        <span>CSS3</span>
+      </div>
+
+      <!-- Tool 4 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+        <span>JavaScript</span>
+      </div>
+
+      <!-- Tool 5 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+        <span>Git</span>
+      </div>
+
+      <!-- Tool 6 -->
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+        <span>Figma</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="about-section" id="about">
+    <div class="about-img">
+      <img src="errol2.jpg">
+    </div>
+    <div class="about-content">
+      <h2>Who I Am</h2>
+      <p>I am a BSIS student who is honest about where I stand in my tech journey—coding doesn't always come naturally to me yet, but I treat every challenge as an opportunity to build competence.</p>
+      <p>My strength lies in my adaptability, attention to detail, and persistence. I combine my writing background with a growing understanding of information systems and web fundamentals to create thoughtful, user-focused digital content.</p>
+    </div>
+  </section>
+
+  <!-- More About Me Section -->
+  <section class="more-about">
+    <h2>More About Me</h2>
+    <div class="more-grid">
+      <div class="fact-col">
+        <div class="fact-card left" style="margin-bottom: 40px;">
+          I am pursuing a degree in Information Systems, focusing on bridging business logic with tech.
+        </div>
+        <div class="fact-card left">
+          There's always a solid playlist running while I tackle new code or work on projects.
+        </div>
+      </div>
+
+      <div class="center-photo">
+        <img src="errol3.jpg">
+      </div>
+
+      <div class="fact-col">
+        <div class="fact-card right" style="margin-bottom: 40px;">
+          Debugging might take me a few tries (and coffee!), but I don't stop until I figure it out.
+        </div>
+        <div class="fact-card right">
+          Exploring new concepts and tools keeps my curiosity high and my perspective humble.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Login Section -->
+  <section class="contact-section" id="contact">
+    <h2>Get In Touch</h2>
+    <p class="subtitle">Feel free to send a message or log in to access member features.</p>
+    
+    <div class="contact-container">
+      <!-- Contact Form -->
+      <div class="contact-card">
+        <h3>Send a Message</h3>
+        <form onsubmit="event.preventDefault(); alert('Message Sent!');">
+          <div class="input-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" placeholder="AKO NALANG" required>
+          </div>
+          <div class="input-group">
+            <label for="contact-email">Your Email</label>
+            <input type="email" id="contact-email" placeholder="PLEASE@gmail.com" required>
+          </div>
+          <div class="input-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" placeholder="I TREAT YOU RIGTH" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Account Login Form -->
+      <div class="login-card">
+        <h3>Account Login</h3>
+        <form onsubmit="event.preventDefault(); alert('Logged In Successfully!');">
+          <div class="input-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="enter your email" required>
+          </div>
+          <div class="input-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-submit">Log In</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Header Popup Log In Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="toggleModal()">&times;</button>
+      <h2>Log In</h2>
+      <form onsubmit="event.preventDefault(); toggleModal();">
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleModal() {
+      const modal = document.getElementById('loginModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+  </script>
+
+</body>
+</html>
